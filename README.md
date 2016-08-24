@@ -14,8 +14,8 @@ Quando um usuário marcar uma tarefa como completa:
 
 Algumas exigências dos usuários muito empolgados com o sistema:
 * Fazer deploy no Heroku : )
-* Pelo menos operação de marcar como a tarefa como completa do to-do list deve ser assíncrona.
+* Pelo menos a operação de marcar a tarefa como completa deve ser assíncrona.
 * Usar o bootstrap para o CSS
-* Criar uma rake task que extrai um relatório CSV de todos os eventos com: usuário, cor hexadecimal, frase e a hora que foi marcada como completa.
+* Criar uma rake task que extrai um relatório CSV de todos os eventos com: usuário, cor hexadecimal, frase e a hora que foi marcada como completa (não vale simplesmente imprimir attributes ou o json. tem que ser cada um separado).
 
 Faça o código exatamente como faria no dia-a-dia de trabalho. Não precisa inventar algo para impressionar : ) Só faça com o que está confortável.
