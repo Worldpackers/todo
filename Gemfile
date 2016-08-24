@@ -8,11 +8,15 @@ gem 'pg', '~> 0.18'
 gem 'devise'
 
 # Assets
-gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'babel-transpiler'
-gem 'sprockets'
-gem 'sprockets-rails'
+gem 'sass-rails', github: 'rails/sass-rails', branch: 'master'
+gem 'sprockets-rails', github: 'rails/sprockets-rails', branch: 'master'
+gem 'sprockets', github: 'rails/sprockets', branch: 'master'
+
+# Frontend
+gem 'slim'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platform: :mri
