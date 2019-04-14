@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">Tasks</a>
+  <ul class="navbar-nav ml-auto">
+      <%= link_to 'Back', tasks_path, class: 'btn btn-primary' %>
+  </ul>
+</nav>
+<%= form_with(model: task, local: true) do |form| %>
+  <table class="table border-right border-left border-bottom">
+    <thead>
+      <tr><th><%= title %></th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= form.submit btn_form, :class => 'btn btn-primary' %>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+<% end %>
