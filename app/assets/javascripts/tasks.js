@@ -16,18 +16,22 @@ $(document).ready(function() {
     $.ajax({
       type: "PUT",
       url: "/tasks/"+id_task,
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        $('.save-task').text('Saving...').prop("disabled",true);;
+      },
       dataType: 'json',
       data: { 'task': {'completed':checked }},
       success: function(data, textStatus, jqXHR){
         $("input:checkbox[id='completed'][value='"+data.id+"']").prop('checked', data.completed);
-        console.log(data);
+        $('.save-task').text('Yes').prop("disabled",false);;
+        $("#modal-alert").modal('hide');
       },
       error: function(jqXHR, textStatus, errorThrown){
         console.log(textStatus);
+        $("#modal-alert").modal('hide');
       }
     });
-    $("#modal-alert").modal('hide');
   });
 });
 
