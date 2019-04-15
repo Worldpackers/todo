@@ -1,0 +1,8 @@
+<h1>CSV file list</h1>
+<ul>
+  <% @files.each do |file| %>
+    <li>
+      <a href="/tracking/csv/<%=file %>"><%=file %></a>
+    </li>
+  <% end %>
+</ul>
