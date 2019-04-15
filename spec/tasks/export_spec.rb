@@ -6,6 +6,7 @@ describe "Task - export:rake" do
     load File.join(Rails.root, 'Rakefile')
     Rake::Task.define_task(:environment)
 
+    FileUtils.mkdir_p "#{Rails.root}/public/tracking/csv_test"
     FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/tracking/csv_test/*.csv"))
 
     Tracking.create({type_tracking:'task', json: {user: 'walterdf@gmail.com', color: '#FF0000', phrase: 'Parabéns'}.to_json })

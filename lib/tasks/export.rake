@@ -7,6 +7,8 @@ namespace :export do
     time_stamp = Time.now.strftime('%Y-%m-%d-%H-%M-%S')
     csv_data = Tracking.to_csv
 
+    FileUtils.mkdir_p "#{Rails.root}/public/tracking/csv"
+
     File.open("public/tracking/#{csv_folder}/Tracking-#{time_stamp}-UTF8.csv", "w:utf-8") do |f|
       f.write csv_data
     end
