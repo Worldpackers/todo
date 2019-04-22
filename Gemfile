@@ -31,7 +31,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+# Interactors are used to encapsulate your application's business logic
+gem "interactor", "~> 3.0"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

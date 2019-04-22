@@ -1,7 +1,8 @@
 class TaskMailer < ApplicationMailer
-  def confirmation(user_email, message_body)
+  def confirmation(user_email, color, phrase)
     @user_email = user_email
-    @message_body = message_body
+    @color = color
+    @phrase = phrase
 
     mail to: @user_email, subject: "App Rails de To Do - Task"
   end

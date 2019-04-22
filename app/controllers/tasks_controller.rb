@@ -1,58 +1,45 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:update, :edit, :destroy]
 
-  # GET /tasks
-  # GET /tasks.json
   def index
     @tasks = Task.all.order(:created_at)
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
-  def show
-  end
-
-  # GET /tasks/new
   def new
     @task = Task.new
   end
 
-  # GET /tasks/1/edit
   def edit
   end
 
-  # POST /tasks
-  # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    result = CreateTask.call(task_params: task_params)
 
     respond_to do |format|
-      if @task.save
+      if result.success?
         format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+        format.json { render :show, status: :created }
       else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_task_url, notice: 'Error creating task.' }
+        format.json { render json: result.message, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
   def update
+    result = UpdateTask.call(task_params: task_params, task: @task)
+
     respond_to do |format|
-      if @task.update(task_params)
+      if result.success?
         format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.html { redirect_to edit_task_path, notice: 'Error editing.' }
+        format.json { render json: result.message, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
   def destroy
     @task.destroy
     respond_to do |format|
@@ -62,12 +49,10 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:name, :completed)
     end

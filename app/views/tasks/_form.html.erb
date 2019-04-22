@@ -4,6 +4,14 @@
       <%= link_to 'Back', tasks_path, class: 'btn btn-primary' %>
   </ul>
 </nav>
+<% unless notice.nil? %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% end %>
 <%= form_with(model: task, local: true) do |form| %>
   <table class="table border-right border-left border-bottom">
     <thead>
@@ -12,8 +20,12 @@
     <tbody>
         <tr>
           <td>
-            <%= form.label :name %>
-            <%= form.text_field :name %>
+            <div>
+              <%= form.label :name %>
+            </div>
+            <div>
+              <%= form.text_field :name %>
+            </div>
           </td>
         </tr>
         <tr>
