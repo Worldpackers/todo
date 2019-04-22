@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">Tasks</a>
+  <ul class="navbar-nav ml-auto">
+      <%= link_to 'Back', tasks_path, class: 'btn btn-primary' %>
+  </ul>
+</nav>
+<% unless notice.nil? %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% end %>
+<%= form_with(model: task, local: true) do |form| %>
+  <table class="table border-right border-left border-bottom">
+    <thead>
+      <tr><th><%= title %></th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+            <div>
+              <%= form.label :name %>
+            </div>
+            <div>
+              <%= form.text_field :name %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= form.submit btn_form, :class => 'btn btn-primary' %>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+<% end %>
